@@ -1,13 +1,7 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
- */
+import type { GatsbyConfig } from 'gatsby';
 
-/**
- * @type {import('gatsby').GatsbyConfig}
- */
-module.exports = {
+const config: GatsbyConfig = {
+  jsxRuntime: 'automatic',
   siteMetadata: {
     title: `Gatsby Starter Blog`,
     author: {
@@ -123,3 +117,5 @@ module.exports = {
     },
   ],
 };
+
+export default config;

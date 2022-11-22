@@ -3,12 +3,13 @@
  *
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/
  */
-
-const path = require(`path`);
-const { createFilePath } = require(`gatsby-source-filesystem`);
+import type { GatsbyNode } from 'gatsby';
+import path from 'path';
+import { createFilePath } from 'gatsby-source-filesystem';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
 // Define the template for blog post
-const blogPost = path.resolve(`./src/templates/blog-post.js`);
+const blogPost = path.resolve(`./src/templates/blog-post.tsx`);
 
 /**
  * @type {import('gatsby').GatsbyNode['createPages']}
@@ -119,4 +120,12 @@ exports.createSchemaCustomization = ({ actions }) => {
       slug: String
     }
   `);
+};
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      plugins: [new TsconfigPathsPlugin()],
+    },
+  });
 };
